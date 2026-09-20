@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://us-ats-resume-builder.enjoy-onepage.com/sitemap.xml
