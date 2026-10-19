@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</title>
+  <title>ATS Resume Builder &amp; Optimizer</title>
   <link>https://us-ats-resume-builder.enjoy-onepage.com/</link>
-  <description>Build a modern, recruiter-ready resume designed to pass Applicant Tracking Systems (ATS). Live preview and instant print-to-PDF.</description>
+  <description>Free ATS-friendly resume builder with live preview, ATS check, and PDF export.</description>
   <language>en-us</language>
   <atom:link href="https://us-ats-resume-builder.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
-  <lastBuildDate>Tue, 29 Sep 2026 06:01:46 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 19 Oct 2026 02:16:19 +0000</lastBuildDate>
   <item>
-    <title>Disclaimer | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</title>
+    <title>Disclaimer | ATS Resume Builder &amp; Optimizer</title>
     <link>https://us-ats-resume-builder.enjoy-onepage.com/disclaimer.html</link>
     <guid isPermaLink="true">https://us-ats-resume-builder.enjoy-onepage.com/disclaimer.html</guid>
-    <description>Disclaimer | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</description>
-    <pubDate>Sun, 20 Sep 2026 22:07:07 +0900</pubDate>
+    <description>Disclaimer for the ATS Resume Builder &amp; Optimizer.</description>
+    <pubDate>Mon, 19 Oct 2026 02:16:19 +0000</pubDate>
   </item>
   <item>
-    <title>Terms of Service | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</title>
-    <link>https://us-ats-resume-builder.enjoy-onepage.com/terms.html</link>
-    <guid isPermaLink="true">https://us-ats-resume-builder.enjoy-onepage.com/terms.html</guid>
-    <description>Terms of Service | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</description>
-    <pubDate>Sun, 20 Sep 2026 22:07:07 +0900</pubDate>
-  </item>
-  <item>
-    <title>Privacy Policy | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</title>
+    <title>Privacy Policy | ATS Resume Builder &amp; Optimizer</title>
     <link>https://us-ats-resume-builder.enjoy-onepage.com/privacy.html</link>
     <guid isPermaLink="true">https://us-ats-resume-builder.enjoy-onepage.com/privacy.html</guid>
-    <description>Privacy Policy | ATS-Friendly Single Page Resume Builder | Clean Markdown &amp; PDF Export</description>
-    <pubDate>Sun, 20 Sep 2026 22:07:07 +0900</pubDate>
+    <description>Privacy Policy for the ATS Resume Builder &amp; Optimizer.</description>
+    <pubDate>Mon, 19 Oct 2026 02:16:19 +0000</pubDate>
+  </item>
+  <item>
+    <title>Terms of Service | ATS Resume Builder &amp; Optimizer</title>
+    <link>https://us-ats-resume-builder.enjoy-onepage.com/terms.html</link>
+    <guid isPermaLink="true">https://us-ats-resume-builder.enjoy-onepage.com/terms.html</guid>
+    <description>Terms of Service for the ATS Resume Builder &amp; Optimizer.</description>
+    <pubDate>Mon, 19 Oct 2026 02:16:19 +0000</pubDate>
   </item>
 </channel>
 </rss>

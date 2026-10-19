@@ -1,28 +1,940 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ATS-Friendly Resume Builder - Under maintenance</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="site-status" content="maintenance">
-<meta name="description" content="This tool is temporarily offline while it is rebuilt.">
+<title>ATS Resume Builder &amp; Optimizer</title>
+<meta name="description" content="Free ATS-friendly resume builder with live preview, ATS check, and PDF export.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-ats-resume-builder.enjoy-onepage.com/">
+<meta name="theme-color" content="#0284c7">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ATS Resume Builder &amp; Optimizer">
+<meta property="og:title" content="ATS Resume Builder &amp; Optimizer">
+<meta property="og:description" content="Free ATS-friendly resume builder with live preview, ATS check, and PDF export.">
+<meta property="og:url" content="https://us-ats-resume-builder.enjoy-onepage.com/">
+<meta property="og:image" content="https://us-ats-resume-builder.enjoy-onepage.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ATS Resume Builder &amp; Optimizer">
+<meta name="twitter:description" content="Free ATS-friendly resume builder with live preview, ATS check, and PDF export.">
+<meta name="twitter:image" content="https://us-ats-resume-builder.enjoy-onepage.com/og-image.png">
+<link rel="alternate" type="application/rss+xml" title="ATS Resume Builder RSS" href="https://us-ats-resume-builder.enjoy-onepage.com/rss.xml">
+<link rel="sitemap" type="application/xml" href="https://us-ats-resume-builder.enjoy-onepage.com/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://us-ats-resume-builder.enjoy-onepage.com/#webapp",
+      "name": "ATS Resume Builder & Optimizer",
+      "url": "https://us-ats-resume-builder.enjoy-onepage.com/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "inLanguage": "en",
+      "description": "Free client-side ATS compliant resume builder featuring real-time preview, ATS scanner optimization, and instant PDF download.",
+      "image": "https://us-ats-resume-builder.enjoy-onepage.com/og-image.png",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://us-ats-resume-builder.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes a resume ATS-friendly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An ATS-compliant resume uses standard section headings, clear typography, and a single-column hierarchy that applicant tracking algorithms can parse without dropped data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my resume data stored or shared with employers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The builder runs 100% locally in your web browser. Your employment history, contact information, and resumes are saved in local storage and never sent to any server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I export my finished resume to PDF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Click the Print or Save as PDF button. Your browser print dialog will open where you select Save as PDF formatted perfectly for standard US Letter or A4 paper."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6946654760086847" crossorigin="anonymous"></script>
 <style>
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
-  main { max-width: 560px; margin: 12vh auto; padding: 32px 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; }
-  h1 { font-size: 1.4rem; margin: 0 0 12px; }
-  p { line-height: 1.6; color: #334155; }
-  a { color: #1d4ed8; font-weight: 600; }
-  .tag { display: inline-block; font-size: .8rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 999px; padding: 4px 10px; margin-bottom: 14px; }
+  :root {
+    --primary: #0284c7;
+    --primary-hover: #0369a1;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 0 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 0 48px; }
+  header { text-align: center; margin-bottom: 24px; }
+  header h1 { font-size: 1.85rem; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+  header p { font-size: 0.95rem; color: var(--text-muted); }
+
+  .manual-ad-box {
+    margin: 16px auto;
+    text-align: center;
+    background: transparent;
+  }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 860px) {
+    .grid2 { grid-template-columns: 1.05fr 0.95fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-group { margin-bottom: 12px; }
+  .form-row { display: flex; gap: 10px; margin-bottom: 12px; }
+  .form-col { flex: 1; }
+  .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: #334155; margin-bottom: 4px; }
+  .form-input, .form-textarea {
+    width: 100%;
+    padding: 8px 11px;
+    font-size: 0.88rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    background: #ffffff;
+    font-family: inherit;
+  }
+  .form-textarea { resize: vertical; min-height: 64px; }
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(2,132,199,0.12);
+  }
+
+  .section-divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  .section-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-secondary { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+  .btn-secondary:hover { background: #e2e8f0; }
+  .btn-sm { padding: 4px 10px; font-size: 0.78rem; }
+  .btn-full { width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 700; }
+
+  .item-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .item-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  /* Resume Preview Sheet */
+  .preview-wrapper {
+    background: #525659;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  .resume-sheet {
+    background: #ffffff;
+    width: 100%;
+    min-height: 520px;
+    padding: 32px 36px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: #000000;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .resume-name {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .resume-contact {
+    text-align: center;
+    font-size: 11px;
+    color: #333333;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #111111;
+    padding-bottom: 8px;
+  }
+  .resume-sec {
+    margin-bottom: 14px;
+  }
+  .resume-sec-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+  }
+  .resume-item-head {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .resume-item-sub {
+    display: flex;
+    justify-content: space-between;
+    font-style: italic;
+    font-size: 11px;
+    color: #333333;
+    margin-bottom: 4px;
+  }
+  .resume-bullets {
+    padding-left: 18px;
+    margin-bottom: 6px;
+  }
+  .resume-bullets li {
+    margin-bottom: 3px;
+    font-size: 11.5px;
+  }
+
+  .ats-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .info-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .info-section h2 { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .info-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .how-step {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .how-step .step-num {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    border-radius: 50%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: #1e293b; }
+  .how-step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
+
+  .faq-list { margin-top: 14px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+  .faq-item p { font-size: 0.85rem; color: #475569; line-height: 1.5; }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: .85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+    z-index: 9999;
+  }
+  .toast.show { opacity: 1; }
+
+  footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+  footer a { color: var(--text-muted); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--text-main); text-decoration: underline; }
+
+  /* Print Stylesheet */
+  @media print {
+    header, footer, .manual-ad-box, #editorCard, .info-section, .toast, .no-print {
+      display: none !important;
+    }
+    body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
+    .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .grid2 { display: block !important; margin: 0 !important; }
+    .preview-wrapper { background: transparent !important; padding: 0 !important; border-radius: 0 !important; }
+    .resume-sheet {
+      width: 100% !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      min-height: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
-<main>
-  <span class="tag">Under maintenance</span>
-  <h1>ATS-Friendly Resume Builder</h1>
-  <p>This tool is temporarily offline. We found that the previous version did not work the way it was described, so we took it down while we rebuild it properly.</p>
-  <p>Please check back later.</p>
-  <p><a href="https://enjoy-onepage.com/">Browse our other free tools</a></p>
-</main>
+<div class="container">
+  <header>
+    <h1>ATS Resume Builder &amp; Optimizer</h1>
+    <p>Build an ATS-optimized, single-column resume with instant live preview and clean PDF export.</p>
+  </header>
+
+  <!-- ADSENSE START: top -->
+  <div class="manual-ad-box ad-top-banner" style="width: 100%; max-width: 960px; min-height: 100px; margin: 0 auto 16px; text-align: center; background: transparent;">
+    <ins class="adsbygoogle"
+         style="display:block; min-height: 100px;"
+         data-ad-client="ca-pub-6946654760086847"
+         data-ad-slot="3824727725"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <!-- ADSENSE END: top -->
+
+  <div class="grid2">
+    <!-- EDITOR COLUMN -->
+    <section class="card" id="editorCard">
+      <h2>
+        <span>Resume Editor</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="loadSampleBtn">Load Sample</button>
+      </h2>
+
+      <!-- Personal Info -->
+      <div class="section-title">1. Contact Information</div>
+      <div class="form-row">
+        <div class="form-col">
+          <label class="form-label" for="inpName">Full Name</label>
+          <input type="text" id="inpName" class="form-input" placeholder="e.g. Alex Morgan">
+        </div>
+        <div class="form-col">
+          <label class="form-label" for="inpTitle">Target Job Title</label>
+          <input type="text" id="inpTitle" class="form-input" placeholder="e.g. Senior Software Engineer">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-col">
+          <label class="form-label" for="inpEmail">Email Address</label>
+          <input type="email" id="inpEmail" class="form-input" placeholder="alex.morgan@email.com">
+        </div>
+        <div class="form-col">
+          <label class="form-label" for="inpPhone">Phone Number</label>
+          <input type="text" id="inpPhone" class="form-input" placeholder="(555) 234-5678">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-col">
+          <label class="form-label" for="inpLocation">Location (City, State)</label>
+          <input type="text" id="inpLocation" class="form-input" placeholder="Austin, TX">
+        </div>
+        <div class="form-col">
+          <label class="form-label" for="inpLink">LinkedIn / Portfolio</label>
+          <input type="text" id="inpLink" class="form-input" placeholder="linkedin.com/in/alexmorgan">
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Summary -->
+      <div class="section-title">2. Professional Summary</div>
+      <div class="form-group">
+        <textarea id="inpSummary" class="form-textarea" placeholder="Results-driven professional with 6+ years of experience leading cross-functional teams..."></textarea>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Experience -->
+      <div class="section-title">
+        <span>3. Work Experience</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="addExpBtn">+ Add Job</button>
+      </div>
+      <div id="expContainer"></div>
+
+      <hr class="section-divider">
+
+      <!-- Education -->
+      <div class="section-title">
+        <span>4. Education</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="addEduBtn">+ Add Education</button>
+      </div>
+      <div id="eduContainer"></div>
+
+      <hr class="section-divider">
+
+      <!-- Skills -->
+      <div class="section-title">5. Core Competencies &amp; Skills</div>
+      <div class="form-group">
+        <label class="form-label" for="inpSkills">Skills (comma-separated)</label>
+        <textarea id="inpSkills" class="form-textarea" placeholder="TypeScript, React, Python, PostgreSQL, AWS, Docker, Git, CI/CD, Agile Leadership"></textarea>
+      </div>
+    </section>
+
+    <!-- PREVIEW COLUMN -->
+    <section class="card">
+      <h2>
+        <span>ATS Preview &amp; Export</span>
+        <span class="ats-badge" id="atsBadge">ATS Compliant: 100%</span>
+      </h2>
+
+      <div class="no-print" style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <button type="button" class="btn btn-primary btn-full" id="printPdfBtn">Print / Save as PDF</button>
+        <button type="button" class="btn btn-secondary" id="clearBtn">Reset</button>
+      </div>
+
+      <div class="preview-wrapper">
+        <div class="resume-sheet" id="resumeSheet">
+          <div class="resume-name" id="prevName">ALEX MORGAN</div>
+          <div class="resume-contact" id="prevContact">
+            Austin, TX &bull; (555) 234-5678 &bull; alex.morgan@email.com &bull; linkedin.com/in/alexmorgan
+          </div>
+
+          <div class="resume-sec" id="secSummary">
+            <div class="resume-sec-title">Professional Summary</div>
+            <p id="prevSummary" style="font-size: 11.5px;"></p>
+          </div>
+
+          <div class="resume-sec" id="secExp">
+            <div class="resume-sec-title">Work Experience</div>
+            <div id="prevExpList"></div>
+          </div>
+
+          <div class="resume-sec" id="secEdu">
+            <div class="resume-sec-title">Education</div>
+            <div id="prevEduList"></div>
+          </div>
+
+          <div class="resume-sec" id="secSkills">
+            <div class="resume-sec-title">Technical &amp; Core Skills</div>
+            <p id="prevSkills" style="font-size: 11.5px;"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- ADSENSE START: mid -->
+  <div class="manual-ad-box ad-mid-banner" style="width: 100%; max-width: 960px; min-height: 250px; margin: 20px auto; text-align: center; background: transparent;">
+    <ins class="adsbygoogle"
+         style="display:block; min-height: 250px;"
+         data-ad-client="ca-pub-6946654760086847"
+         data-ad-slot="1186914926"
+         data-ad-format="rectangle,horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <!-- ADSENSE END: mid -->
+
+  <section class="info-section">
+    <h2>How to Create an ATS-Friendly Resume</h2>
+    <div class="info-grid">
+      <div class="how-step">
+        <span class="step-num">1</span>
+        <h3>Fill Contact &amp; Roles</h3>
+        <p>Enter your professional details, action-oriented bullet points, and education credentials.</p>
+      </div>
+      <div class="how-step">
+        <span class="step-num">2</span>
+        <h3>Verify ATS Structure</h3>
+        <p>The single-column layout ensures applicant tracking bots parse every word without data loss.</p>
+      </div>
+      <div class="how-step">
+        <span class="step-num">3</span>
+        <h3>Export Clean PDF</h3>
+        <p>Click Print or Save as PDF to generate a pristine, recruiter-ready US Letter or A4 document.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item"><h3>What makes a resume ATS-friendly?</h3><p>An ATS-compliant resume uses standard section headings, clear typography, and a single-column hierarchy that applicant tracking algorithms can parse without dropped data.</p></div>
+      <div class="faq-item"><h3>Is my resume data stored or shared with employers?</h3><p>No. The builder runs 100% locally in your web browser. Your employment history, contact information, and resumes are saved in local storage and never sent to any server.</p></div>
+      <div class="faq-item"><h3>How can I export my finished resume to PDF?</h3><p>Click the Print or Save as PDF button. Your browser print dialog will open where you select Save as PDF formatted perfectly for standard US Letter or A4 paper.</p></div>
+    </div>
+  </section>
+
+  <!-- ADSENSE START: bottom -->
+  <div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; min-height: 280px; margin: 24px auto 16px; text-align: center; background: transparent;">
+    <ins class="adsbygoogle"
+         style="display:block; min-height: 280px;"
+         data-ad-client="ca-pub-6946654760086847"
+         data-ad-slot="3416334507"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <!-- ADSENSE END: bottom -->
+
+  <div id="global-ux-toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <p>&copy; 2026 ATS Resume Builder &amp; Optimizer. All rights reserved.</p>
+    <p style="margin-top: 8px;">
+      <a href="/privacy.html">Privacy Policy</a> &bull;
+      <a href="/terms.html">Terms of Service</a> &bull;
+      <a href="/disclaimer.html">Disclaimer</a>
+    </p>
+  </footer>
+</div>
+
+<!-- LOGIC START -->
+<script>
+(function() {
+  const inpName = document.getElementById('inpName');
+  const inpTitle = document.getElementById('inpTitle');
+  const inpEmail = document.getElementById('inpEmail');
+  const inpPhone = document.getElementById('inpPhone');
+  const inpLocation = document.getElementById('inpLocation');
+  const inpLink = document.getElementById('inpLink');
+  const inpSummary = document.getElementById('inpSummary');
+  const inpSkills = document.getElementById('inpSkills');
+
+  const expContainer = document.getElementById('expContainer');
+  const eduContainer = document.getElementById('eduContainer');
+  const addExpBtn = document.getElementById('addExpBtn');
+  const addEduBtn = document.getElementById('addEduBtn');
+  const loadSampleBtn = document.getElementById('loadSampleBtn');
+  const printPdfBtn = document.getElementById('printPdfBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const toast = document.getElementById('global-ux-toast');
+
+  // Preview elements
+  const prevName = document.getElementById('prevName');
+  const prevContact = document.getElementById('prevContact');
+  const prevSummary = document.getElementById('prevSummary');
+  const prevExpList = document.getElementById('prevExpList');
+  const prevEduList = document.getElementById('prevEduList');
+  const prevSkills = document.getElementById('prevSkills');
+
+  let experiences = [];
+  let educations = [];
+
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._tid);
+    toast._tid = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function renderExpForm() {
+    expContainer.innerHTML = '';
+    experiences.forEach((exp, idx) => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <button type="button" class="item-remove" data-idx="${idx}">&times;</button>
+        <div class="form-row">
+          <div class="form-col">
+            <label class="form-label">Job Title</label>
+            <input type="text" class="form-input exp-title" data-idx="${idx}" value="${escapeHtml(exp.title || '')}">
+          </div>
+          <div class="form-col">
+            <label class="form-label">Company / Employer</label>
+            <input type="text" class="form-input exp-company" data-idx="${idx}" value="${escapeHtml(exp.company || '')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col">
+            <label class="form-label">Location</label>
+            <input type="text" class="form-input exp-loc" data-idx="${idx}" value="${escapeHtml(exp.location || '')}">
+          </div>
+          <div class="form-col">
+            <label class="form-label">Dates (e.g. 2021 - Present)</label>
+            <input type="text" class="form-input exp-dates" data-idx="${idx}" value="${escapeHtml(exp.dates || '')}">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Responsibilities &amp; Achievements (one per line)</label>
+          <textarea class="form-textarea exp-bullets" data-idx="${idx}" placeholder="Spearheaded cloud migration...">${escapeHtml(exp.bullets || '')}</textarea>
+        </div>
+      `;
+      expContainer.appendChild(card);
+    });
+
+    // attach events
+    expContainer.querySelectorAll('.item-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-idx'), 10);
+        experiences.splice(i, 1);
+        renderExpForm();
+        updatePreview();
+      });
+    });
+    expContainer.querySelectorAll('.exp-title').forEach(inp => {
+      inp.addEventListener('input', (e) => { experiences[inp.dataset.idx].title = e.target.value; updatePreview(); });
+    });
+    expContainer.querySelectorAll('.exp-company').forEach(inp => {
+      inp.addEventListener('input', (e) => { experiences[inp.dataset.idx].company = e.target.value; updatePreview(); });
+    });
+    expContainer.querySelectorAll('.exp-loc').forEach(inp => {
+      inp.addEventListener('input', (e) => { experiences[inp.dataset.idx].location = e.target.value; updatePreview(); });
+    });
+    expContainer.querySelectorAll('.exp-dates').forEach(inp => {
+      inp.addEventListener('input', (e) => { experiences[inp.dataset.idx].dates = e.target.value; updatePreview(); });
+    });
+    expContainer.querySelectorAll('.exp-bullets').forEach(inp => {
+      inp.addEventListener('input', (e) => { experiences[inp.dataset.idx].bullets = e.target.value; updatePreview(); });
+    });
+  }
+
+  function renderEduForm() {
+    eduContainer.innerHTML = '';
+    educations.forEach((edu, idx) => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <button type="button" class="item-remove" data-idx="${idx}">&times;</button>
+        <div class="form-row">
+          <div class="form-col">
+            <label class="form-label">Degree &amp; Major</label>
+            <input type="text" class="form-input edu-degree" data-idx="${idx}" value="${escapeHtml(edu.degree || '')}">
+          </div>
+          <div class="form-col">
+            <label class="form-label">University / School</label>
+            <input type="text" class="form-input edu-school" data-idx="${idx}" value="${escapeHtml(edu.school || '')}">
+          </div>
+        </div>
+        <div class="form-row" style="margin-bottom:0;">
+          <div class="form-col">
+            <label class="form-label">Location</label>
+            <input type="text" class="form-input edu-loc" data-idx="${idx}" value="${escapeHtml(edu.location || '')}">
+          </div>
+          <div class="form-col">
+            <label class="form-label">Graduation Year</label>
+            <input type="text" class="form-input edu-year" data-idx="${idx}" value="${escapeHtml(edu.year || '')}">
+          </div>
+        </div>
+      `;
+      eduContainer.appendChild(card);
+    });
+
+    eduContainer.querySelectorAll('.item-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-idx'), 10);
+        educations.splice(i, 1);
+        renderEduForm();
+        updatePreview();
+      });
+    });
+    eduContainer.querySelectorAll('.edu-degree').forEach(inp => {
+      inp.addEventListener('input', (e) => { educations[inp.dataset.idx].degree = e.target.value; updatePreview(); });
+    });
+    eduContainer.querySelectorAll('.edu-school').forEach(inp => {
+      inp.addEventListener('input', (e) => { educations[inp.dataset.idx].school = e.target.value; updatePreview(); });
+    });
+    eduContainer.querySelectorAll('.edu-loc').forEach(inp => {
+      inp.addEventListener('input', (e) => { educations[inp.dataset.idx].location = e.target.value; updatePreview(); });
+    });
+    eduContainer.querySelectorAll('.edu-year').forEach(inp => {
+      inp.addEventListener('input', (e) => { educations[inp.dataset.idx].year = e.target.value; updatePreview(); });
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function updatePreview() {
+    prevName.textContent = inpName.value.trim() || 'YOUR NAME';
+
+    const contacts = [
+      inpLocation.value.trim(),
+      inpPhone.value.trim(),
+      inpEmail.value.trim(),
+      inpLink.value.trim()
+    ].filter(Boolean);
+    prevContact.innerHTML = contacts.join(' &bull; ') || 'City, State &bull; (555) 000-0000 &bull; your.email@example.com';
+
+    prevSummary.textContent = inpSummary.value.trim() || 'Professional summary highlighting leadership, technical skills, and proven record of achievements...';
+
+    // Experiences
+    prevExpList.innerHTML = '';
+    experiences.forEach(exp => {
+      const item = document.createElement('div');
+      item.style.marginBottom = '8px';
+      item.innerHTML = `
+        <div class="resume-item-head">
+          <span>${escapeHtml(exp.title || 'Role')}</span>
+          <span>${escapeHtml(exp.dates || '')}</span>
+        </div>
+        <div class="resume-item-sub">
+          <span>${escapeHtml(exp.company || 'Company')}</span>
+          <span>${escapeHtml(exp.location || '')}</span>
+        </div>
+      `;
+      if (exp.bullets && exp.bullets.trim()) {
+        const ul = document.createElement('ul');
+        ul.className = 'resume-bullets';
+        exp.bullets.split('\n').map(l => l.trim()).filter(Boolean).forEach(bullet => {
+          const li = document.createElement('li');
+          li.textContent = bullet.replace(/^[•\-\*]\s*/, '');
+          ul.appendChild(li);
+        });
+        item.appendChild(ul);
+      }
+      prevExpList.appendChild(item);
+    });
+
+    // Education
+    prevEduList.innerHTML = '';
+    educations.forEach(edu => {
+      const item = document.createElement('div');
+      item.style.marginBottom = '6px';
+      item.innerHTML = `
+        <div class="resume-item-head">
+          <span>${escapeHtml(edu.degree || 'Degree')}</span>
+          <span>${escapeHtml(edu.year || '')}</span>
+        </div>
+        <div class="resume-item-sub">
+          <span>${escapeHtml(edu.school || 'University')}</span>
+          <span>${escapeHtml(edu.location || '')}</span>
+        </div>
+      `;
+      prevEduList.appendChild(item);
+    });
+
+    prevSkills.textContent = inpSkills.value.trim() || 'Core skills and keywords matching target job description...';
+
+    saveToStorage();
+  }
+
+  function saveToStorage() {
+    const data = {
+      name: inpName.value,
+      title: inpTitle.value,
+      email: inpEmail.value,
+      phone: inpPhone.value,
+      location: inpLocation.value,
+      link: inpLink.value,
+      summary: inpSummary.value,
+      skills: inpSkills.value,
+      experiences: experiences,
+      educations: educations
+    };
+    try {
+      localStorage.setItem('us_ats_resume_data', JSON.stringify(data));
+    } catch (e) {}
+  }
+
+  function loadSample() {
+    inpName.value = 'ALEX MORGAN';
+    inpTitle.value = 'Senior Full-Stack Engineer';
+    inpEmail.value = 'alex.morgan@email.com';
+    inpPhone.value = '(555) 234-5678';
+    inpLocation.value = 'Austin, TX';
+    inpLink.value = 'linkedin.com/in/alexmorgan';
+    inpSummary.value = 'Results-driven Full-Stack Engineer with 7+ years of expertise in architecting high-scale SaaS web platforms, distributed systems, and real-time cloud APIs. Proven history of mentoring engineering teams and optimizing Core Web Vitals to drive 40% user retention growth.';
+
+    experiences = [
+      {
+        title: 'Senior Software Engineer',
+        company: 'CloudScale Technologies',
+        location: 'Austin, TX',
+        dates: '2021 - Present',
+        bullets: 'Spearheaded modern web app architecture reducing initial bundle load times by 45%.\nArchitected microservices pipeline handling 10M+ daily events using Node.js and AWS.\nMentored 8 software engineers through code reviews, design docs, and CI/CD best practices.'
+      },
+      {
+        title: 'Full-Stack Developer',
+        company: 'Apex Digital Solutions',
+        location: 'Dallas, TX',
+        dates: '2018 - 2021',
+        bullets: 'Developed responsive client web apps using React, TypeScript, and REST APIs.\nDesigned relational database schema migrations reducing query latency by 32%.\nCollaborated directly with product managers to deliver 14 core features on schedule.'
+      }
+    ];
+
+    educations = [
+      {
+        degree: 'Bachelor of Science in Computer Science',
+        school: 'University of Texas at Austin',
+        location: 'Austin, TX',
+        year: '2018'
+      }
+    ];
+
+    inpSkills.value = 'TypeScript, JavaScript, React, Node.js, Python, PostgreSQL, Redis, AWS, Docker, Git, CI/CD, REST APIs, Microservices, Agile Methodology';
+
+    renderExpForm();
+    renderEduForm();
+    updatePreview();
+    showToast('Loaded sample ATS resume data.');
+  }
+
+  addExpBtn.addEventListener('click', () => {
+    experiences.push({ title: '', company: '', location: '', dates: '', bullets: '' });
+    renderExpForm();
+    updatePreview();
+  });
+
+  addEduBtn.addEventListener('click', () => {
+    educations.push({ degree: '', school: '', location: '', year: '' });
+    renderEduForm();
+    updatePreview();
+  });
+
+  loadSampleBtn.addEventListener('click', loadSample);
+
+  printPdfBtn.addEventListener('click', () => {
+    window.print();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    if (confirm('Reset resume fields to blank?')) {
+      inpName.value = '';
+      inpTitle.value = '';
+      inpEmail.value = '';
+      inpPhone.value = '';
+      inpLocation.value = '';
+      inpLink.value = '';
+      inpSummary.value = '';
+      inpSkills.value = '';
+      experiences = [];
+      educations = [];
+      renderExpForm();
+      renderEduForm();
+      updatePreview();
+      try { localStorage.removeItem('us_ats_resume_data'); } catch (e) {}
+      showToast('Resume cleared.');
+    }
+  });
+
+  [inpName, inpTitle, inpEmail, inpPhone, inpLocation, inpLink, inpSummary, inpSkills].forEach(inp => {
+    inp.addEventListener('input', updatePreview);
+  });
+
+  // Init from storage or sample
+  try {
+    const saved = localStorage.getItem('us_ats_resume_data');
+    if (saved) {
+      const d = JSON.parse(saved);
+      inpName.value = d.name || '';
+      inpTitle.value = d.title || '';
+      inpEmail.value = d.email || '';
+      inpPhone.value = d.phone || '';
+      inpLocation.value = d.location || '';
+      inpLink.value = d.link || '';
+      inpSummary.value = d.summary || '';
+      inpSkills.value = d.skills || '';
+      experiences = d.experiences || [];
+      educations = d.educations || [];
+      renderExpForm();
+      renderEduForm();
+      updatePreview();
+    } else {
+      loadSample();
+    }
+  } catch (e) {
+    loadSample();
+  }
+})();
+</script>
+<!-- LOGIC END -->
 </body>
 </html>
